@@ -1,0 +1,108 @@
+
+ <%- include('../partials/header.ejs') %>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+<div class="parichit-connections">
+  <div class="parichit-center-container parichit-mb-100">
+    <div class="parichit-event-heading">
+      <h3 class="parichit-dis-in-bl">Parichit's Connections</h3>
+    </div>
+    <table class="parichit-connections-table">
+      <thead>
+        <tr>
+          <th>Connection</th>
+          <th>Category</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>TPS</td>
+          <td>Assassins Creed 3</td>
+          <td>
+            <button class="parichit-edit-btn" onclick="window.location.href='/trades/644b0a674cda8e5c68e6ae89/edit'">Edit</button> 
+            <button class="parichit-delete-btn" data-id="644b0a674cda8e5c68e6ae89">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>TPS</td>
+          <td>Last of us</td>
+          <td>
+            <button class="parichit-edit-btn" onclick="window.location.href='/trades/644b0ad94cda8e5c68e6ae90/edit'">Edit</button> 
+            <button class="parichit-delete-btn" data-id="644b0ad94cda8e5c68e6ae90">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>TPS</td>
+          <td>Witcher 3</td>
+          <td>
+            <button class="parichit-edit-btn" onclick="window.location.href=' /trades/644b0b504cda8e5c68e6ae93/edit'">Edit</button> 
+            <button class="parichit-delete-btn" data-id="644b0b504cda8e5c68e6ae93">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>FPS</td>
+          <td>Rainbow Siege six</td>
+          <td>
+            <button class="parichit-edit-btn" onclick="window.location.href='/trades/644b0ba54cda8e5c68e6ae96/edit'">Edit</button>  
+            <button class="parichit-delete-btn" data-id="644b0ba54cda8e5c68e6ae96">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>FPS</td>
+          <td>Overwatch</td>
+          <td>
+            <button class="parichit-edit-btn" onclick="window.location.href='/trades/644b0c3b4cda8e5c68e6ae9a/edit'">Edit</button>  
+            <button class="parichit-delete-btn" data-id="644b0c3b4cda8e5c68e6ae9a">Delete</button>
+          </td>
+        </tr>
+        <tr>
+          <td>FPS</td>
+          <td>Valorant</td>
+          <td>
+            <button class="parichit-edit-btn" onclick="window.location.href='/trades/644b0de64cda8e5c68e6aece/edit'">Edit</button>  
+            <button class="parichit-delete-btn" data-id="644b0de64cda8e5c68e6aece">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <br>
+    <script>
+        const deleteBtns = document.querySelectorAll(".parichit-delete-btn");
+      
+        deleteBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const tradeId = btn.getAttribute("data-id");
+            const row = btn.parentNode.parentNode;
+      
+            // Send a DELETE request to the server
+            fetch(`/trades/${tradeId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            })
+            .then((response) => {
+                console.log("Status:", response.status, "Status Text:", response.statusText); // Log status code and status text
+                row.parentNode.removeChild(row);
+            })
+            
+          });
+        });
+      </script>
+      
+  </div>
+</div>
+<%- include('../partials/footer.ejs') %>
